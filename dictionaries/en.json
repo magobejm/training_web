@@ -1,0 +1,519 @@
+{
+    "common": {
+        "loading": "Loading...",
+        "error": "An error occurred",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "create": "Create",
+        "back": "Back",
+        "search": "Search...",
+        "actions": "Actions",
+        "confirm": "Confirm",
+        "exercise": "Exercise",
+        "gender": {
+            "male": "Male",
+            "female": "Female",
+            "other": "Other"
+        }
+    },
+    "auth": {
+        "login": {
+            "title": "Login",
+            "subtitle": "Access your Training App account",
+            "email": "Email Address",
+            "password": "Password",
+            "submit": "Sign In",
+            "forgotPassword": "Forgot your password?",
+            "noAccount": "Don't have an account? Sign up",
+            "demoCredentials": {
+                "title": "Demo Credentials:",
+                "trainer": "Trainer",
+                "client": "Client"
+            }
+        },
+        "register": {
+            "title": "Register",
+            "subtitle": "Create your account",
+            "name": "Full Name",
+            "submit": "Sign Up",
+            "hasAccount": "Already have an account? Login"
+        },
+        "forgotPassword": {
+            "title": "Recover Password",
+            "subtitle": "Enter your email and we'll send you a link to reset your password.",
+            "success_title": "Check your email",
+            "success_subtitle": "If an account exists with that email, you will receive instructions to reset your password.",
+            "submit": "Send recovery link",
+            "submitting": "Sending...",
+            "backToLogin": "Back to login"
+        }
+    },
+    "sidebar": {
+        "app_name": "Training App",
+        "subtitle": "Trainer Platform",
+        "dashboard": "Dashboard",
+        "clients": "Clients",
+        "exercises": "Exercises",
+        "plans": "Plans",
+        "calendar": "Calendar",
+        "inbox": "Inbox",
+        "settings": "Settings",
+        "logout": "Logout",
+        "profile": "Profile",
+        "role": {
+            "trainer": "Trainer",
+            "client": "Client",
+            "admin": "Admin"
+        }
+    },
+    "dashboard": {
+        "welcome": "Welcome, {name}!",
+        "trainer_subtitle": "Here is a summary of your clients and library activity.",
+        "client_subtitle": "Your current progress and upcoming sessions.",
+        "stats": {
+            "total_clients": "Total Clients",
+            "clients_desc": "Manage your active clients",
+            "total_exercises": "Exercises",
+            "exercises_desc": "Exercise library",
+            "sessions_today": "Sessions Today",
+            "sessions_today_desc": "Scheduled for today",
+            "sessions_month": "Sessions This Month",
+            "sessions_month_desc": "Completed this month"
+        },
+        "quick_actions": {
+            "title": "Quick Actions",
+            "new_client": "New Client",
+            "new_client_desc": "Register a new client",
+            "new_exercise": "Create Exercise",
+            "new_exercise_desc": "Add to your library",
+            "new_plan": "New Plan",
+            "new_plan_desc": "Design a plan",
+            "view_calendar": "Calendar",
+            "view_calendar_desc": "View schedule"
+        },
+        "active_plan": {
+            "title": "Active Plan",
+            "no_plan": "You don't have an active plan currently.",
+            "view_details": "View details"
+        },
+        "next_session": {
+            "title": "Next Session",
+            "scheduled_for": "Your next session is scheduled for {date}",
+            "view_calendar": "View Calendar"
+        }
+    },
+    "clients": {
+        "title": "Clients",
+        "new_client": "New Client",
+        "search_placeholder": "Search clients...",
+        "active_clients": "Active Clients",
+        "no_clients": "You have no assigned clients.",
+        "stats": {
+            "active_this_month": "Active this month",
+            "new_last_30d": "New (30d)"
+        },
+        "table": {
+            "name": "Name",
+            "email": "Email",
+            "status": "Status",
+            "plan": "Current Plan",
+            "no_plan_assigned": "No plan assigned",
+            "actions": "Actions"
+        },
+        "status": {
+            "active": "Active",
+            "inactive": "Inactive"
+        },
+        "form": {
+            "create_title": "Create New Client",
+            "edit_title": "Edit Client",
+            "name": "Name",
+            "name_placeholder": "Full name",
+            "email": "Email",
+            "email_placeholder": "client@example.com",
+            "password": "Password",
+            "password_placeholder": "Minimum 8 characters",
+            "confirm_password": "Confirm Password",
+            "confirm_password_placeholder": "Repeat password",
+            "password_mismatch": "Passwords do not match",
+            "password_min": "Password must be at least 8 characters",
+            "name_min": "Name must be at least 2 characters",
+            "info_credentials": "The client will receive these credentials to access the application",
+            "success_create": "Client created successfully",
+            "error_create": "Error creating client. Email might be in use.",
+            "rol": "Role",
+            "trainer": "Assigned Trainer",
+            "save": "Save Client",
+            "creating": "Creating...",
+            "update": "Update Client"
+        },
+        "assign_plan": {
+            "title": "Assign Training Plan",
+            "description": "Select a plan to assign to this client. The previous plan will be replaced.",
+            "loading": "Loading plans...",
+            "success": "Plan assigned successfully",
+            "error": "Error assigning plan",
+            "submit": "Save Changes",
+            "submitting": "Assigning...",
+            "change_plan": "Change Plan",
+            "assign_plan": "Assign Plan",
+            "no_plan_title": "No training plan assigned",
+            "no_plan_desc": "This client does not have a training plan yet"
+        },
+        "profile": {
+            "back": "Back to Clients",
+            "since": "Client since",
+            "plan_title": "Training Plan",
+            "plan_subtitle": "plans assigned",
+            "sessions_title": "Sessions",
+            "sessions_subtitle": "completed this month",
+            "progress_title": "Progress",
+            "progress_subtitle": "metrics registered",
+            "tabs": {
+                "current_plan": "Active Plan",
+                "history": "History",
+                "metrics": "Metrics",
+                "photos": "Photos"
+            },
+            "view_details": "View Details",
+            "danger_zone": "Danger Zone",
+            "danger_desc": "Once deleted, this client will not appear in the list. However, it can be reactivated if registered again with the same email.",
+            "delete_client": "Delete Client",
+            "confirm_delete": "Are you sure?",
+            "deleting": "Deleting...",
+            "confirm_yes": "Yes, Delete",
+            "loading": "Loading profile...",
+            "error": "Error loading client profile.",
+            "edit_button": "Edit Profile",
+            "physical_stats": "Physical Stats"
+        },
+        "edit": {
+            "title": "Edit Client Profile",
+            "name": "Full Name",
+            "birthDate": "Date of Birth",
+            "gender": "Gender",
+            "height": "Height",
+            "weight": "Current Weight",
+            "maxHeartRate": "Max Heart Rate",
+            "restingHeartRate": "Resting Heart Rate",
+            "leanMass": "Lean Mass (%)",
+            "success": "Profile updated successfully",
+            "error": "Error updating profile"
+        }
+    },
+    "exercises": {
+        "title": "Exercises",
+        "new_exercise": "New Exercise",
+        "search_placeholder": "Search exercises by name or muscle...",
+        "no_exercises": "No exercises found.",
+        "loading": "Loading exercises...",
+        "error": "Error loading exercises. Please try again.",
+        "showing": "Showing {shown} of {total} exercises",
+        "video_label": "VIDEO",
+        "empty_search": "Try different search terms or create a new one",
+        "delete_success": "Exercise deleted successfully",
+        "delete_error": "Error deleting exercise",
+        "view_details": "View Details",
+        "groups": {
+            "others": "Others",
+            "count": "{count} exercises"
+        },
+        "details": {
+            "loading": "Loading details...",
+            "error": "Error loading exercise details.",
+            "back": "Back to Library",
+            "no_preview": "No video or image preview",
+            "view_original": "View original",
+            "edit_info": "Edit Information",
+            "description_title": "Description / Instructions",
+            "danger_zone": "Danger Zone",
+            "danger_desc": "Once deleted, this exercise will disappear from the library and cannot be used in new plans. Existing plans that include it will keep a reference but the exercise will appear as \"Not available\".",
+            "delete_button": "Delete Exercise",
+            "confirm_title": "Are you sure?",
+            "delete_confirm_desc": "This action cannot be undone. The exercise will be permanently deleted from the catalog.",
+            "confirm_yes": "Yes, Delete",
+            "deleting": "Deleting..."
+        },
+        "form": {
+            "create_title": "New Exercise",
+            "edit_title": "Edit Exercise",
+            "back": "Back to Exercises",
+            "name": "Name",
+            "name_placeholder": "Ex. Bench Press",
+            "description": "Description",
+            "description_placeholder": "Describe how to perform the exercise...",
+            "muscle_group": "Muscle Group",
+            "video_url": "Video URL (YouTube)",
+            "video_url_placeholder": "https://youtube.com/...",
+            "image_url": "Image URL",
+            "image_url_placeholder": "https://...",
+            "cancel": "Cancel",
+            "save": "Save Exercise",
+            "create": "Create Exercise",
+            "update": "Update",
+            "saving": "Saving...",
+            "success_create": "Exercise created",
+            "success_update": "Exercise updated",
+            "error_save": "Error saving exercise",
+            "validation": {
+                "name": "Name is required",
+                "description": "Description is required",
+                "muscle": "Muscle group is required",
+                "video_url": "Invalid video URL",
+                "image_url": "Invalid image URL"
+            }
+        },
+        "muscles": {
+            "PECTORAL": "Chest",
+            "DORSAL": "Back",
+            "PIERNA": "Legs",
+            "HOMBRO": "Shoulders",
+            "BICEPS": "Biceps",
+            "TRICEPS": "Triceps",
+            "ABDOMINALES": "Abs",
+            "LUMBAR": "Lower Back",
+            "CARDIO": "Cardio",
+            "MOVILIDAD": "Mobility",
+            "CALENTAMIENTO": "Warm-up",
+            "CUADRICEPS": "Quadriceps",
+            "FEMORAL": "Hamstrings",
+            "GLUTEO": "Glutes",
+            "GEMELO": "Calves",
+            "DELTOIDES": "Deltoids"
+        }
+    },
+    "plans": {
+        "title": "Training Plans",
+        "subtitle": "Create and manage plans for your clients",
+        "new_plan": "New Plan",
+        "search_placeholder": "Search plans...",
+        "no_plans": "No plans found.",
+        "loading": "Loading planes...",
+        "exercise_format": "{sets} sets x {reps} reps",
+        "rest_display": "({rest}s rest)",
+        "delete_tooltip": "Delete plan",
+        "delete_confirm": "Are you sure you want to delete this plan?",
+        "delete_error": "Error deleting plan",
+        "delete_success": "Plan deleted successfully",
+        "empty_title": "No training plans",
+        "empty_desc": "Create your first plan to assign to your clients",
+        "create_new": "Create Plan",
+        "days": "{count} days",
+        "exercises": "{count} exercises",
+        "loading_details": "Loading plan...",
+        "not_found": "Plan not found.",
+        "back_to_list": "Back to list",
+        "days_count": "Plan Days ({count})",
+        "day_header": "Day {order}: {name}",
+        "no_exercises": "No exercises assigned",
+        "no_days": "This plan has no days configured yet",
+        "danger_zone": "Danger Zone",
+        "danger_desc": "This action cannot be undone. This will permanently delete the plan and all its assignments.",
+        "delete_button": "Delete Plan",
+        "confirm_title": "Are you sure?",
+        "confirm_delete": "Yes, Delete",
+        "deleting": "Deleting...",
+        "wizard": {
+            "title": "Create Training Plan",
+            "cancel_confirm": "Are you sure you want to cancel? Current progress will be lost.",
+            "cancel_button": "Cancel and exit wizard",
+            "back": "Back",
+            "next": "Next Step",
+            "next_exercises": "Next: Add Exercises",
+            "next_review": "Next: Review",
+            "steps": {
+                "info": "Basic Info",
+                "structure": "Structure",
+                "exercises": "Exercises",
+                "review": "Review"
+            },
+            "info": {
+                "title": "Basic Information",
+                "name": "Plan Name",
+                "name_placeholder": "e.g. Hypertrophy Phase 1",
+                "description": "Description (Optional)",
+                "description_placeholder": "Describe the goal of this plan..."
+            },
+            "structure": {
+                "title": "Plan Structure",
+                "add_day": "Add Day",
+                "empty_state": "No days added yet. Start by adding your first training day.",
+                "add_day_1": "Add Day 1",
+                "day_name": "DAY NAME",
+                "day_placeholder": "Day {index}",
+                "remove_day": "Remove Day"
+            },
+            "exercises": {
+                "title": "Add Exercises",
+                "add_exercise_button": "Add Exercise",
+                "empty": "No exercises added.",
+                "labels": {
+                    "sets": "Sets",
+                    "reps": "Reps",
+                    "rest": "Rest (s)",
+                    "rir": "RIR"
+                },
+                "modal_title": "Select Exercise",
+                "search_placeholder": "Search by name or muscle...",
+                "no_results": "No exercises found."
+            },
+            "review": {
+                "title": "Review & Create",
+                "plan_name": "Plan Name",
+                "description": "Description",
+                "total_days": "Total Days",
+                "total_exercises": "Total Exercises",
+                "preview_title": "Schedule Preview",
+                "day_label": "Day {idx}",
+                "creating": "Creating Plan...",
+                "create_button": "Create Training Plan",
+                "error": "Failed to create plan. Please try again."
+            }
+        }
+    },
+    "calendar": {
+        "title": "Calendar",
+        "subtitle": "Plan and schedule sessions for your clients",
+        "schedule_session": "Schedule Session",
+        "loading": "Loading calendar...",
+        "months": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "days_short": [
+            "Sun",
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat"
+        ],
+        "tooltip": {
+            "client": "Client",
+            "more": "+{count} more"
+        },
+        "upcoming": {
+            "title": "Upcoming Sessions",
+            "session_type": "Training Session",
+            "empty": "No sessions scheduled for this month."
+        },
+        "status": {
+            "completed": "Completed",
+            "pending": "Pending"
+        },
+        "modal": {
+            "title": "Schedule Session",
+            "client": "Client",
+            "select_client": "Select client...",
+            "client_hint": "* Only clients with active plans are shown.",
+            "plan": "Training Plan",
+            "no_plan": "No active plan",
+            "select_client_first": "Select a client first",
+            "day": "Plan Day",
+            "select_day": "Select day...",
+            "date": "Date",
+            "time": "Time",
+            "notes": "Notes (Optional)",
+            "notes_placeholder": "Specific instructions...",
+            "submit": "Schedule Session",
+            "submitting": "Scheduling..."
+        },
+        "details": {
+            "title": "Session Details",
+            "client_label": "Client: {name}",
+            "reschedule": "Reschedule",
+            "cancel": "Cancel",
+            "cancel_confirm": "Are you sure you want to cancel this session?",
+            "cancel_success": "Session canceled",
+            "cancel_error": "Error canceling session",
+            "reschedule_success": "Session rescheduled",
+            "reschedule_error": "Error rescheduling session",
+            "new_date": "New Date",
+            "new_time": "New Time",
+            "confirm_change": "Confirm Change",
+            "saving": "Saving..."
+        }
+    },
+    "inbox": {
+        "title": "Inbox",
+        "subtitle": "Consultations and messages from your clients",
+        "new_message": "New Message",
+        "loading": "Loading consultations...",
+        "loading_single": "Loading consultation...",
+        "not_found": "Consultation not found.",
+        "back": "Back to Inbox",
+        "created_at": "Created: {date}",
+        "conversation": "Conversation",
+        "no_messages": "No messages in this consultation",
+        "no_consultations": "No consultations",
+        "no_open": "No open consultations",
+        "no_resolved": "No resolved consultations",
+        "empty_desc": "Consultations from your clients will appear here",
+        "search_placeholder": "Search messages...",
+        "chat_with": "Chat with {name}",
+        "type_message": "Type your reply...",
+        "send": "Send",
+        "resolve": "Mark as Resolved",
+        "filters": {
+            "label": "Filter:",
+            "all": "All",
+            "open": "Open",
+            "resolved": "Resolved"
+        },
+        "status": {
+            "open": "Open",
+            "resolved": "Resolved"
+        },
+        "priority": {
+            "high": "High",
+            "medium": "Medium",
+            "low": "Low"
+        }
+    },
+    "settings": {
+        "title": "Settings",
+        "profile": {
+            "title": "Trainer Profile",
+            "current_avatar": "Current Avatar",
+            "select_avatar": "Select a cartoon-style (Pixar style) avatar for your profile:",
+            "personal_info": "Personal Information",
+            "display_name": "Display Name",
+            "name_placeholder": "Your name",
+            "avatar_updated": "Profile photo updated",
+            "avatar_error": "Error updating avatar",
+            "name_updated": "Name updated",
+            "name_error": "Error updating name"
+        },
+        "password": {
+            "title": "Change Password",
+            "current": "Current Password",
+            "new": "New Password",
+            "confirm": "Confirm New Password",
+            "submit": "Update Password",
+            "submitting": "Updating...",
+            "success": "Password updated successfully.",
+            "error_generic": "Error updating password",
+            "min_length": "Password must be at least 8 characters",
+            "mismatch": "Passwords do not match"
+        },
+        "language": {
+            "title": "Language",
+            "description": "Select the application language",
+            "es": "Spanish",
+            "en": "English"
+        }
+    }
+}

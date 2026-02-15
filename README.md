@@ -1,6 +1,32 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+## Training App
+
+## 🚀 Desarrollo Local (Rápido)
+
+Para probar los cambios sin reconstruir Docker cada vez:
+
+1.  **Base de Datos**: Mantén Docker corriendo solo para la DB.
+    ```bash
+    docker-compose up -d db
+    ```
+
+2.  **API (Terminal 1)**:
+    ```bash
+    cd apps/api
+    pnpm dev
+    ```
+
+3.  **Web (Terminal 2)**:
+    ```bash
+    cd apps/web
+    pnpm dev
+    ```
+
+El backend correrá en `http://localhost:3000` y el frontend en `http://localhost:3001`.
+Los cambios en el código se reflejarán instantáneamente.
+
+## Docker Completo
 
 First, run the development server:
 

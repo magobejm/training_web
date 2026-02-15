@@ -1,0 +1,519 @@
+{
+    "common": {
+        "loading": "Cargando...",
+        "error": "Ha ocurrido un error",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "create": "Crear",
+        "back": "Volver",
+        "search": "Buscar...",
+        "actions": "Acciones",
+        "confirm": "Confirmar",
+        "exercise": "Ejercicio",
+        "gender": {
+            "male": "Masculino",
+            "female": "Femenino",
+            "other": "Otro"
+        }
+    },
+    "auth": {
+        "login": {
+            "title": "Iniciar Sesión",
+            "subtitle": "Accede a tu cuenta de Training App",
+            "email": "Correo Electrónico",
+            "password": "Contraseña",
+            "submit": "Entrar",
+            "forgotPassword": "¿Olvidaste tu contraseña?",
+            "noAccount": "¿No tienes cuenta? Regístrate",
+            "demoCredentials": {
+                "title": "Credenciales de prueba:",
+                "trainer": "Entrenador",
+                "client": "Cliente"
+            }
+        },
+        "register": {
+            "title": "Registro",
+            "subtitle": "Crea tu cuenta",
+            "name": "Nombre Completo",
+            "submit": "Registrarse",
+            "hasAccount": "¿Ya tienes cuenta? Inicia sesión"
+        },
+        "forgotPassword": {
+            "title": "Recuperar Contraseña",
+            "subtitle": "Ingresa tu email y te enviaremos un enlace para restablecer tu contraseña.",
+            "success_title": "Revisa tu email",
+            "success_subtitle": "Si existe una cuenta asociada a ese email, recibirás instrucciones para restablecer tu contraseña.",
+            "submit": "Enviar enlace de recuperación",
+            "submitting": "Enviando...",
+            "backToLogin": "Volver al inicio de sesión"
+        }
+    },
+    "sidebar": {
+        "app_name": "Training App",
+        "subtitle": "Plataforma Trainer",
+        "dashboard": "Panel Principal",
+        "clients": "Clientes",
+        "exercises": "Ejercicios",
+        "plans": "Planes",
+        "calendar": "Calendario",
+        "inbox": "Mensajes",
+        "settings": "Ajustes",
+        "logout": "Cerrar Sesión",
+        "profile": "Perfil",
+        "role": {
+            "trainer": "Entrenador",
+            "client": "Cliente",
+            "admin": "Administrador"
+        }
+    },
+    "dashboard": {
+        "welcome": "¡Bienvenido, {name}!",
+        "trainer_subtitle": "Aquí tienes un resumen de la actividad de tus clientes y biblioteca.",
+        "client_subtitle": "Tu progreso actual y próximas sesiones.",
+        "stats": {
+            "total_clients": "Total Clientes",
+            "clients_desc": "Gestiona tus clientes activos",
+            "total_exercises": "Ejercicios",
+            "exercises_desc": "Biblioteca de ejercicios",
+            "sessions_today": "Sesiones Hoy",
+            "sessions_today_desc": "Programadas para hoy",
+            "sessions_month": "Sesiones Mes",
+            "sessions_month_desc": "Completadas este mes"
+        },
+        "quick_actions": {
+            "title": "Acciones Rápidas",
+            "new_client": "Nuevo Cliente",
+            "new_client_desc": "Registra un nuevo cliente",
+            "new_exercise": "Crear Ejercicio",
+            "new_exercise_desc": "Añade a tu biblioteca",
+            "new_plan": "Nuevo Plan",
+            "new_plan_desc": "Diseña un plan",
+            "view_calendar": "Calendario",
+            "view_calendar_desc": "Ver programación"
+        },
+        "active_plan": {
+            "title": "Plan Actual",
+            "no_plan": "No tienes ningún plan activo actualmente.",
+            "view_details": "Ver detalles"
+        },
+        "next_session": {
+            "title": "Próxima Sesión",
+            "scheduled_for": "Tu próxima sesión está programada para el {date}",
+            "view_calendar": "Ver Calendario"
+        }
+    },
+    "clients": {
+        "title": "Clientes",
+        "new_client": "Nuevo Cliente",
+        "search_placeholder": "Buscar clientes...",
+        "active_clients": "Clientes Activos",
+        "no_clients": "No tienes clientes asignados.",
+        "stats": {
+            "active_this_month": "Activos este mes",
+            "new_last_30d": "Nuevos (30d)"
+        },
+        "table": {
+            "name": "Nombre",
+            "email": "Email",
+            "status": "Estado",
+            "plan": "Plan Actual",
+            "no_plan_assigned": "Sin plan asignado",
+            "actions": "Acciones"
+        },
+        "status": {
+            "active": "Activo",
+            "inactive": "Inactivo"
+        },
+        "form": {
+            "create_title": "Crear Nuevo Cliente",
+            "edit_title": "Editar Cliente",
+            "name": "Nombre",
+            "name_placeholder": "Nombre completo",
+            "email": "Email",
+            "email_placeholder": "cliente@example.com",
+            "password": "Contraseña",
+            "password_placeholder": "Mínimo 8 caracteres",
+            "confirm_password": "Confirmar Contraseña",
+            "confirm_password_placeholder": "Repite la contraseña",
+            "password_mismatch": "Las contraseñas no coinciden",
+            "password_min": "La contraseña debe tener al menos 8 caracteres",
+            "name_min": "El nombre debe tener al menos 2 caracteres",
+            "info_credentials": "El cliente recibirá estas credenciales para acceder a la aplicación",
+            "success_create": "Cliente creado con éxito",
+            "error_create": "Error al crear cliente. El email podría estar en uso.",
+            "rol": "Rol",
+            "trainer": "Entrenador Asignado",
+            "save": "Guardar Cliente",
+            "creating": "Creando...",
+            "update": "Actualizar Cliente"
+        },
+        "assign_plan": {
+            "title": "Asignar Plan de Entrenamiento",
+            "description": "Selecciona un plan para asignar a este cliente. El plan anterior será reemplazado.",
+            "loading": "Cargando planes...",
+            "success": "Plan asignado correctamente",
+            "error": "Error al asignar el plan",
+            "submit": "Guardar Cambios",
+            "submitting": "Asignando...",
+            "change_plan": "Cambiar Plan",
+            "assign_plan": "Asignar Plan",
+            "no_plan_title": "Sin plan de entrenamiento asignado",
+            "no_plan_desc": "Este cliente aún no tiene un plan de entrenamiento"
+        },
+        "profile": {
+            "back": "Volver a Clientes",
+            "since": "Cliente desde",
+            "plan_title": "Plan de Entrenamiento",
+            "plan_subtitle": "planes asignados",
+            "sessions_title": "Sesiones",
+            "sessions_subtitle": "completadas este mes",
+            "progress_title": "Progreso",
+            "progress_subtitle": "métricas registradas",
+            "tabs": {
+                "current_plan": "Plan Actual",
+                "history": "Historial",
+                "metrics": "Métricas",
+                "photos": "Fotos"
+            },
+            "view_details": "Ver Detalles",
+            "danger_zone": "Zona Peligrosa",
+            "danger_desc": "Una vez eliminado, este cliente no aparecerá en la lista. Sin embargo, puede reactivarse si vuelve a registrarse con el mismo email.",
+            "delete_client": "Eliminar Cliente",
+            "confirm_delete": "¿Estás seguro?",
+            "deleting": "Eliminando...",
+            "confirm_yes": "Sí, Eliminar",
+            "loading": "Cargando perfil...",
+            "error": "Error al cargar el perfil del cliente.",
+            "edit_button": "Editar Perfil",
+            "physical_stats": "Datos Físicos"
+        },
+        "edit": {
+            "title": "Editar Perfil del Cliente",
+            "name": "Nombre completo",
+            "birthDate": "Fecha de Nacimiento",
+            "gender": "Sexo",
+            "height": "Altura",
+            "weight": "Peso Actual",
+            "maxHeartRate": "FC Máxima",
+            "restingHeartRate": "FC Reposo",
+            "leanMass": "Masa Magra (%)",
+            "success": "Perfil actualizado correctamente",
+            "error": "Error al actualizar el perfil"
+        }
+    },
+    "exercises": {
+        "title": "Ejercicios",
+        "new_exercise": "Nuevo Ejercicio",
+        "search_placeholder": "Buscar ejercicios por nombre o músculo...",
+        "no_exercises": "No se encontraron ejercicios.",
+        "loading": "Cargando ejercicios...",
+        "error": "Error al cargar ejercicios. Intenta de nuevo.",
+        "showing": "Mostrando {shown} de {total} ejercicios",
+        "video_label": "VIDEO",
+        "empty_search": "Intenta con otros términos de búsqueda o crea uno nuevo",
+        "delete_success": "Ejercicio eliminado correctamente",
+        "delete_error": "Error al eliminar el ejercicio",
+        "view_details": "Ver Detalles",
+        "groups": {
+            "others": "Otros",
+            "count": "{count} ejercicios"
+        },
+        "details": {
+            "loading": "Cargando detalles...",
+            "error": "Error al cargar los detalles del ejercicio.",
+            "back": "Volver a la biblioteca",
+            "no_preview": "Sin previsualización de vídeo o imagen",
+            "view_original": "Ver original",
+            "edit_info": "Editar Información",
+            "description_title": "Descripción / Instrucciones",
+            "danger_zone": "Zona Peligrosa",
+            "danger_desc": "Una vez eliminado, este ejercicio desaparecerá de la biblioteca y no podrá ser usado en nuevos planes. Los planes existentes que ya lo incluyan mantendrán una referencia pero el ejercicio aparecerá como \"No disponible\".",
+            "delete_button": "Eliminar Ejercicio",
+            "confirm_title": "¿Estás seguro?",
+            "delete_confirm_desc": "Esta acción no se puede deshacer. El ejercicio se eliminará permanentemente del catálogo.",
+            "confirm_yes": "Sí, Eliminar",
+            "deleting": "Eliminando..."
+        },
+        "form": {
+            "create_title": "Nuevo Ejercicio",
+            "edit_title": "Editar Ejercicio",
+            "back": "Volver a Ejercicios",
+            "name": "Nombre",
+            "name_placeholder": "Ej. Press Banca",
+            "description": "Descripción",
+            "description_placeholder": "Describe cómo realizar el ejercicio...",
+            "muscle_group": "Grupo Muscular",
+            "video_url": "Video URL (YouTube)",
+            "video_url_placeholder": "https://youtube.com/...",
+            "image_url": "Imagen URL",
+            "image_url_placeholder": "https://...",
+            "cancel": "Cancelar",
+            "save": "Guardar Ejercicio",
+            "create": "Crear Ejercicio",
+            "update": "Actualizar",
+            "saving": "Guardando...",
+            "success_create": "Ejercicio creado",
+            "success_update": "Ejercicio actualizado",
+            "error_save": "Error al guardar el ejercicio",
+            "validation": {
+                "name": "El nombre es obligatorio",
+                "description": "La descripción es obligatoria",
+                "muscle": "El grupo muscular es obligatorio",
+                "video_url": "URL de video inválida",
+                "image_url": "URL de imagen inválida"
+            }
+        },
+        "muscles": {
+            "PECTORAL": "Pectoral",
+            "DORSAL": "Dorsal",
+            "PIERNA": "Pierna",
+            "HOMBRO": "Hombro",
+            "BICEPS": "Bíceps",
+            "TRICEPS": "Tríceps",
+            "ABDOMINALES": "Abdominales",
+            "LUMBAR": "Lumbar",
+            "CARDIO": "Cardio",
+            "MOVILIDAD": "Movilidad",
+            "CALENTAMIENTO": "Calentamiento",
+            "CUADRICEPS": "Cuádriceps",
+            "FEMORAL": "Femoral",
+            "GLUTEO": "Glúteo",
+            "GEMELO": "Gemelo",
+            "DELTOIDES": "Deltoides"
+        }
+    },
+    "plans": {
+        "title": "Planes de Entrenamiento",
+        "subtitle": "Crea y gestiona planes para tus clientes",
+        "new_plan": "Nuevo Plan",
+        "search_placeholder": "Buscar planes...",
+        "no_plans": "No se encontraron planes.",
+        "loading": "Cargando planes...",
+        "exercise_format": "{sets} series x {reps} reps",
+        "rest_display": "({rest}s desc.)",
+        "delete_tooltip": "Eliminar plan",
+        "delete_confirm": "¿Estás seguro de que quieres eliminar este plan?",
+        "delete_error": "Error al eliminar el plan",
+        "delete_success": "Plan eliminado correctamente",
+        "empty_title": "No hay planes de entrenamiento",
+        "empty_desc": "Crea tu primer plan para asignar a tus clientes",
+        "create_new": "Crear Plan",
+        "days": "{count} días",
+        "exercises": "{count} ejercicios",
+        "loading_details": "Cargando plan...",
+        "not_found": "Plan no encontrado.",
+        "back_to_list": "Volver al listado",
+        "days_count": "Días del Plan ({count})",
+        "day_header": "Día {order}: {name}",
+        "no_exercises": "Sin ejercicios asignados",
+        "no_days": "Este plan aún no tiene días configurados",
+        "danger_zone": "Zona Peligrosa",
+        "danger_desc": "Esta acción no se puede deshacer. Esto eliminará permanentemente el plan y todas sus asignaciones.",
+        "delete_button": "Eliminar Plan",
+        "confirm_title": "¿Estás seguro?",
+        "confirm_delete": "Sí, Eliminar",
+        "deleting": "Eliminando...",
+        "wizard": {
+            "title": "Crear Plan de Entrenamiento",
+            "cancel_confirm": "¿Estás seguro de que quieres cancelar? Se perderá el progreso actual.",
+            "cancel_button": "Cancelar y salir del asistente",
+            "back": "Atrás",
+            "next": "Siguiente Paso",
+            "next_exercises": "Siguiente: Añadir Ejercicios",
+            "next_review": "Siguiente: Revisar",
+            "steps": {
+                "info": "Información Básica",
+                "structure": "Estructura",
+                "exercises": "Ejercicios",
+                "review": "Revisar"
+            },
+            "info": {
+                "title": "Información Básica",
+                "name": "Nombre del Plan",
+                "name_placeholder": "Ej. Hipertrofia Fase 1",
+                "description": "Descripción (Opcional)",
+                "description_placeholder": "Describe el objetivo de este plan..."
+            },
+            "structure": {
+                "title": "Estructura del Plan",
+                "add_day": "Añadir Día",
+                "empty_state": "Aún no hay días añadidos. Comienza añadiendo tu primer día de entrenamiento.",
+                "add_day_1": "Añadir Día 1",
+                "day_name": "NOMBRE DEL DÍA",
+                "day_placeholder": "Día {index}",
+                "remove_day": "Eliminar Día"
+            },
+            "exercises": {
+                "title": "Añadir Ejercicios",
+                "add_exercise_button": "Añadir Ejercicio",
+                "empty": "No hay ejercicios añadidos.",
+                "labels": {
+                    "sets": "Series",
+                    "reps": "Reps",
+                    "rest": "Descanso (s)",
+                    "rir": "RIR"
+                },
+                "modal_title": "Seleccionar Ejercicio",
+                "search_placeholder": "Buscar por nombre o músculo...",
+                "no_results": "No se encontraron ejercicios."
+            },
+            "review": {
+                "title": "Revisar y Crear",
+                "plan_name": "Nombre del Plan",
+                "description": "Descripción",
+                "total_days": "Total Días",
+                "total_exercises": "Total Ejercicios",
+                "preview_title": "Vista Previa del Horario",
+                "day_label": "Día {idx}",
+                "creating": "Creando Plan...",
+                "create_button": "Crear Plan de Entrenamiento",
+                "error": "Error al crear el plan. Por favor intenta de nuevo."
+            }
+        }
+    },
+    "calendar": {
+        "title": "Calendario",
+        "subtitle": "Planifica y programa sesiones para tus clientes",
+        "schedule_session": "Programar Sesión",
+        "loading": "Cargando calendario...",
+        "months": [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        ],
+        "days_short": [
+            "Dom",
+            "Lun",
+            "Mar",
+            "Mié",
+            "Jue",
+            "Vie",
+            "Sáb"
+        ],
+        "tooltip": {
+            "client": "Cliente",
+            "more": "+{count} más"
+        },
+        "upcoming": {
+            "title": "Próximas Sesiones",
+            "session_type": "Sesión de Entrenamiento",
+            "empty": "No hay sesiones programadas para este mes."
+        },
+        "status": {
+            "completed": "Completada",
+            "pending": "Pendiente"
+        },
+        "modal": {
+            "title": "Programar Sesión",
+            "client": "Cliente",
+            "select_client": "Seleccionar cliente...",
+            "client_hint": "* Solo se muestran clientes con planes activos.",
+            "plan": "Plan de Entrenamiento",
+            "no_plan": "Sin plan activo",
+            "select_client_first": "Seleccione un cliente primero",
+            "day": "Día del Plan",
+            "select_day": "Seleccionar día...",
+            "date": "Fecha",
+            "time": "Hora",
+            "notes": "Notas (Opcional)",
+            "notes_placeholder": "Instrucciones específicas...",
+            "submit": "Agendar Sesión",
+            "submitting": "Agendando..."
+        },
+        "details": {
+            "title": "Detalles de la Sesión",
+            "client_label": "Cliente: {name}",
+            "reschedule": "Reprogramar",
+            "cancel": "Cancelar",
+            "cancel_confirm": "¿Estás seguro de que quieres cancelar esta sesión?",
+            "cancel_success": "Sesión cancelada",
+            "cancel_error": "Error al cancelar la sesión",
+            "reschedule_success": "Sesión reprogramada",
+            "reschedule_error": "Error al reprogramar la sesión",
+            "new_date": "Nueva Fecha",
+            "new_time": "Nueva Hora",
+            "confirm_change": "Confirmar Cambio",
+            "saving": "Guardando..."
+        }
+    },
+    "inbox": {
+        "title": "Bandeja de Entrada",
+        "subtitle": "Consultas y mensajes de tus clientes",
+        "new_message": "Nuevo Mensaje",
+        "loading": "Cargando consultas...",
+        "loading_single": "Cargando consulta...",
+        "not_found": "Consulta no encontrada.",
+        "back": "Volver al Inbox",
+        "created_at": "Creada: {date}",
+        "conversation": "Conversación",
+        "no_messages": "No hay mensajes en esta consulta",
+        "no_consultations": "No hay consultas",
+        "no_open": "No hay consultas abiertas",
+        "no_resolved": "No hay consultas resueltas",
+        "empty_desc": "Las consultas de tus clientes aparecerán aquí",
+        "search_placeholder": "Buscar mensajes...",
+        "chat_with": "Chat con {name}",
+        "type_message": "Escribe tu respuesta...",
+        "send": "Enviar",
+        "resolve": "Marcar como Resuelta",
+        "filters": {
+            "label": "Filtrar:",
+            "all": "Todas",
+            "open": "Abiertas",
+            "resolved": "Resueltas"
+        },
+        "status": {
+            "open": "Abierta",
+            "resolved": "Resuelta"
+        },
+        "priority": {
+            "high": "Alta",
+            "medium": "Media",
+            "low": "Baja"
+        }
+    },
+    "settings": {
+        "title": "Ajustes",
+        "profile": {
+            "title": "Perfil del Entrenador",
+            "current_avatar": "Avatar Actual",
+            "select_avatar": "Selecciona un avatar con estilo de dibujos animados (Pixar style) para tu perfil:",
+            "personal_info": "Información Personal",
+            "display_name": "Nombre Público",
+            "name_placeholder": "Tu nombre",
+            "avatar_updated": "Foto de perfil actualizada",
+            "avatar_error": "Error al actualizar avatar",
+            "name_updated": "Nombre actualizado",
+            "name_error": "Error al actualizar nombre"
+        },
+        "password": {
+            "title": "Cambiar Contraseña",
+            "current": "Contraseña Actual",
+            "new": "Nueva Contraseña",
+            "confirm": "Confirmar Nueva Contraseña",
+            "submit": "Actualizar Contraseña",
+            "submitting": "Actualizando...",
+            "success": "Contraseña actualizada correctamente.",
+            "error_generic": "Error al actualizar la contraseña",
+            "min_length": "La contraseña debe tener al menos 8 caracteres",
+            "mismatch": "Las contraseñas no coinciden"
+        },
+        "language": {
+            "title": "Idioma",
+            "description": "Selecciona el idioma de la aplicación",
+            "es": "Español",
+            "en": "English"
+        }
+    }
+}
