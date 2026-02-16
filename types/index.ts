@@ -16,6 +16,7 @@ export interface User {
     name?: string;
     role: Role; // Updated from string union to Object
     avatarUrl?: string | null;
+    phone?: string | null;
     birthDate?: string | null;
     gender?: 'MALE' | 'FEMALE' | 'OTHER' | null;
     height?: number | null;
@@ -23,6 +24,11 @@ export interface User {
     maxHeartRate?: number | null;
     restingHeartRate?: number | null;
     leanMass?: number | null;
+    waist?: number | null;
+    hips?: number | null;
+    chest?: number | null;
+    arm?: number | null;
+    leg?: number | null;
     activePlan?: {
         id: string;
         name: string;
@@ -30,6 +36,8 @@ export interface User {
     };
     createdAt: string;
     updatedAt: string;
+    completedWorkouts?: number;
+    goal?: string | null;
 }
 
 
@@ -98,9 +106,30 @@ export interface BodyMetric {
     weight: number;
     height?: number;
     bodyFat?: number;
+    waist?: number | null;
+    hips?: number | null;
+    chest?: number | null;
+    arm?: number | null;
+    leg?: number | null;
     measurements?: Record<string, number>;
     notes?: string;
     loggedAt: string;
+}
+
+export interface CoachNote {
+    id: string;
+    clientId: string;
+    authorId: string;
+    content: string;
+    author?: {
+        id: string;
+        name: string;
+        userRole: {
+            name: string;
+        };
+    };
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface ProgressPhoto {
@@ -108,7 +137,7 @@ export interface ProgressPhoto {
     userId: string;
     imageUrl: string;
     caption?: string;
-    uploadedAt: string;
+    loggedAt: string;
 }
 
 export interface Consultation {

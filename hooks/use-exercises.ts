@@ -2,6 +2,17 @@ import api from '@/lib/api';
 import { Exercise } from '@/types';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
+// Muscle Groups Hook
+export function useMuscleGroups() {
+    return useQuery({
+        queryKey: ['muscle-groups'],
+        queryFn: async () => {
+            const { data } = await api.get<{ id: string; name: string; imageUrl: string | null }[]>('/muscle-groups');
+            return data;
+        },
+    });
+}
+
 export function useExercises() {
     return useQuery({
         queryKey: ['exercises'],

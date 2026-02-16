@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useExercises, useDeleteExercise } from '@/hooks/use-exercises';
+import { useState, useMemo } from 'react';
+import { useExercises, useDeleteExercise, useMuscleGroups } from '@/hooks/use-exercises';
 import { MagnifyingGlassIcon, PlusIcon, PencilIcon, TrashIcon, ChevronUpIcon, ChevronDownIcon, AcademicCapIcon } from '@heroicons/react/24/outline';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
@@ -19,28 +19,60 @@ import { useTranslation } from '@/hooks/use-translation';
 
 export default function ExercisesPage() {
     const { data: exercises, isLoading, error } = useExercises();
+    const { data: muscleGroups } = useMuscleGroups();
     const deleteExercise = useDeleteExercise();
     const router = useRouter();
     const [searchTerm, setSearchTerm] = useState('');
     const [exerciseToDelete, setExerciseToDelete] = useState<string | null>(null);
     const { t } = useTranslation();
 
-    const filteredExercises = exercises?.filter((exercise) =>
-        exercise.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        exercise.muscleGroup.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filteredExercises = useMemo(() => {
+        return exercises?.filter((exercise) =>
+            exercise.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            exercise.muscleGroup.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }, [exercises, searchTerm]);
 
-    // Grouping logic
-    const groupedExercises = filteredExercises?.reduce((acc, exercise) => {
-        const group = exercise.muscleGroup || t('exercises.groups.others');
-        if (!acc[group]) acc[group] = [];
-        acc[group].push(exercise);
-        return acc;
-    }, {} as Record<string, any[]>);
+    // Grouping logic based on DB Muscle Groups + Others
+    const groupedExercises = useMemo(() => {
+        if (!filteredExercises) return {};
 
-    const [collapsedGroups, setCollapsedGroups] = useState<string[]>(() =>
-        groupedExercises ? Object.keys(groupedExercises) : []
-    );
+        const groups: Record<string, typeof filteredExercises> = {};
+
+        // Initialize groups from DB order
+        muscleGroups?.forEach(mg => {
+            groups[mg.name] = [];
+        });
+        groups[t('exercises.groups.others')] = []; // Fallback group
+
+        filteredExercises.forEach(exercise => {
+            const groupName = exercise.muscleGroup;
+            // Check if this group exists in our DB list (by name)
+            // If not, put in "Others" or create new key if we want to show it
+            if (groups[groupName]) {
+                groups[groupName].push(exercise);
+            } else {
+                // Try to find if it matches a DB group ignoring case? 
+                // For now exact match or "Others"
+                // Or if the exercise has a new group not in DB list?
+                // Let's just key by the name
+                if (!groups[groupName]) groups[groupName] = [];
+                groups[groupName].push(exercise);
+            }
+        });
+
+        // Clean up empty groups if needed, OR keep them to show "No exercises"
+        // Let's remove empty groups to keep UI clean
+        Object.keys(groups).forEach(key => {
+            if (groups[key].length === 0) {
+                delete groups[key];
+            }
+        });
+
+        return groups;
+    }, [filteredExercises, muscleGroups, t]);
+
+    const [collapsedGroups, setCollapsedGroups] = useState<string[]>([]);
 
     const toggleGroup = (group: string) => {
         setCollapsedGroups(prev =>

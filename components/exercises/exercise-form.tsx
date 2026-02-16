@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
-import { useCreateExercise, useUpdateExercise } from '@/hooks/use-exercises';
+import { useCreateExercise, useUpdateExercise, useMuscleGroups } from '@/hooks/use-exercises';
 import { Exercise } from '@/types';
 import { toast } from 'sonner';
 import { useTranslation } from '@/hooks/use-translation';
@@ -19,12 +19,6 @@ const createExerciseSchema = (t: (key: string) => string) => z.object({
 
 type ExerciseFormData = z.infer<ReturnType<typeof createExerciseSchema>>;
 
-const MUSCLE_GROUPS = [
-    'PECTORAL', 'DORSAL', 'PIERNA', 'HOMBRO', 'BICEPS', 'TRICEPS',
-    'ABDOMINALES', 'LUMBAR', 'CARDIO', 'MOVILIDAD', 'CALENTAMIENTO',
-    'CUADRICEPS', 'FEMORAL', 'GLUTEO', 'GEMELO', 'DELTOIDES'
-];
-
 interface ExerciseFormProps {
     initialData?: Exercise;
     isEditing?: boolean;
@@ -34,6 +28,7 @@ export default function ExerciseForm({ initialData, isEditing = false }: Exercis
     const router = useRouter();
     const createExercise = useCreateExercise();
     const updateExercise = useUpdateExercise();
+    const { data: muscleGroups, isLoading: isLoadingMuscles } = useMuscleGroups();
     const { t } = useTranslation();
 
     const exerciseSchema = createExerciseSchema(t);
@@ -47,7 +42,7 @@ export default function ExerciseForm({ initialData, isEditing = false }: Exercis
         defaultValues: {
             name: initialData?.name || '',
             description: initialData?.description || '',
-            muscleGroup: initialData?.muscleGroup || 'PECTORAL',
+            muscleGroup: initialData?.muscleGroup || '',
             defaultVideoUrl: initialData?.defaultVideoUrl || '',
             defaultImageUrl: initialData?.defaultImageUrl || '',
         },
@@ -106,11 +101,13 @@ export default function ExerciseForm({ initialData, isEditing = false }: Exercis
                     </label>
                     <select
                         {...register('muscleGroup')}
-                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        disabled={isLoadingMuscles}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100"
                     >
-                        {MUSCLE_GROUPS.map((group) => (
-                            <option key={group} value={group}>
-                                {t(`exercises.muscles.${group}`)}
+                        <option value="">{t('exercises.form.select_muscle')}</option>
+                        {muscleGroups?.map((group) => (
+                            <option key={group.id} value={group.name}>
+                                {t(`exercises.muscles.${group.name}`) || group.name}
                             </option>
                         ))}
                     </select>

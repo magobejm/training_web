@@ -18,6 +18,10 @@ import {
     Bars3Icon,
     XMarkIcon,
     Cog6ToothIcon,
+    CakeIcon,
+    BookOpenIcon,
+    InformationCircleIcon,
+    CreditCardIcon,
 } from '@heroicons/react/24/outline';
 
 export default function DashboardLayout({
@@ -35,9 +39,12 @@ export default function DashboardLayout({
         { name: t('sidebar.dashboard'), href: '/dashboard', icon: HomeIcon },
         { name: t('sidebar.clients'), href: '/clients', icon: UsersIcon },
         { name: t('sidebar.exercises'), href: '/exercises', icon: CubeIcon },
+        { name: t('sidebar.nutrition'), href: '/nutrition', icon: CakeIcon },
         { name: t('sidebar.plans'), href: '/training-plans', icon: ClipboardDocumentListIcon },
         { name: t('sidebar.calendar'), href: '/calendar', icon: CalendarIcon },
+        { name: t('sidebar.instructions'), href: '/instructions', icon: InformationCircleIcon },
         { name: t('sidebar.inbox'), href: '/inbox', icon: InboxIcon },
+        { name: t('sidebar.payments'), href: '/payments', icon: CreditCardIcon },
         { name: t('sidebar.settings'), href: '/settings', icon: Cog6ToothIcon },
     ];
 

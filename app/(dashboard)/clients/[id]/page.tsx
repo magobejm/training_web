@@ -10,12 +10,19 @@ import {
     ChartBarIcon,
     ClipboardDocumentListIcon,
     TrashIcon,
+    PhotoIcon,
+    BookOpenIcon,
 } from '@heroicons/react/24/outline';
 
 import AssignPlanModal from '@/components/clients/assign-plan-modal';
 import EditProfileModal from '@/components/clients/edit-profile-modal';
 import Avatar from '@/components/ui/avatar';
 import { useTranslation } from '@/hooks/use-translation';
+import BodyMetricsTab from '@/components/clients/body-metrics-tab';
+import ProgressPhotosTab from '@/components/clients/progress-photos-tab';
+import CoachNotesSection from '@/components/clients/coach-notes-section';
+
+type TabType = 'current_plan' | 'history' | 'metrics' | 'photos' | 'coach_notes';
 
 export default function ClientProfilePage() {
     const params = useParams();
@@ -26,6 +33,7 @@ export default function ClientProfilePage() {
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [selectedModal, setSelectedModal] = useState<'assign-plan' | null>(null);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState<TabType>('current_plan');
     const { t } = useTranslation();
 
     const handleDelete = async () => {
@@ -57,6 +65,14 @@ export default function ClientProfilePage() {
     }
 
     const client = clientData as import('@/types').User;
+
+    const tabs = [
+        { id: 'current_plan', name: t('clients.profile.tabs.current_plan'), icon: ClipboardDocumentListIcon },
+        { id: 'history', name: t('clients.profile.tabs.history'), icon: CalendarIcon },
+        { id: 'metrics', name: t('clients.profile.tabs.metrics'), icon: ChartBarIcon },
+        { id: 'photos', name: t('clients.profile.tabs.photos'), icon: PhotoIcon },
+        { id: 'coach_notes', name: t('clients.profile.tabs.coach_notes'), icon: BookOpenIcon },
+    ];
 
     return (
         <div className="space-y-6">
@@ -99,7 +115,7 @@ export default function ClientProfilePage() {
                         <ClipboardDocumentListIcon className="h-5 w-5 text-blue-600 mr-2" />
                         <h3 className="font-medium text-gray-900">{t('clients.profile.plan_title')}</h3>
                     </div>
-                    <p className="text-2xl font-bold text-gray-900">0</p>
+                    <p className="text-2xl font-bold text-gray-900">{client.activePlan ? 1 : 0}</p>
                     <p className="text-sm text-gray-600">{t('clients.profile.plan_subtitle')}</p>
                 </div>
 
@@ -108,7 +124,7 @@ export default function ClientProfilePage() {
                         <CalendarIcon className="h-5 w-5 text-green-600 mr-2" />
                         <h3 className="font-medium text-gray-900">{t('clients.profile.sessions_title')}</h3>
                     </div>
-                    <p className="text-2xl font-bold text-gray-900">0</p>
+                    <p className="text-2xl font-bold text-gray-900">{client.completedWorkouts || 0}</p>
                     <p className="text-sm text-gray-600">{t('clients.profile.sessions_subtitle')}</p>
                 </div>
 
@@ -125,7 +141,7 @@ export default function ClientProfilePage() {
             {/* Physical Stats */}
             <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">{t('clients.profile.physical_stats')}</h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     <div>
                         <p className="text-sm text-gray-500 mb-1">{t('clients.edit.gender')}</p>
                         <p className="font-medium text-gray-900">{client.gender ? t(`common.gender.${client.gender.toLowerCase()}`) : '-'}</p>
@@ -151,73 +167,145 @@ export default function ClientProfilePage() {
                         <p className="font-medium text-gray-900">{client.restingHeartRate ? `${client.restingHeartRate} bpm` : '-'}</p>
                     </div>
                     <div>
+                        <p className="text-sm text-gray-500 mb-1">{t('clients.edit.phone')}</p>
+                        <p className="font-medium text-gray-900">{client.phone || '-'}</p>
+                    </div>
+                    <div>
                         <p className="text-sm text-gray-500 mb-1">{t('clients.edit.leanMass')}</p>
                         <p className="font-medium text-gray-900">{client.leanMass ? `${client.leanMass}%` : '-'}</p>
                     </div>
+                    {/* New Metrics */}
+                    {client.waist && (
+                        <div>
+                            <p className="text-sm text-gray-500 mb-1">{t('clients.edit.waist')}</p>
+                            <p className="font-medium text-gray-900">{client.waist} cm</p>
+                        </div>
+                    )}
+                    {client.hips && (
+                        <div>
+                            <p className="text-sm text-gray-500 mb-1">{t('clients.edit.hips')}</p>
+                            <p className="font-medium text-gray-900">{client.hips} cm</p>
+                        </div>
+                    )}
+                    {client.chest && (
+                        <div>
+                            <p className="text-sm text-gray-500 mb-1">{t('clients.edit.chest')}</p>
+                            <p className="font-medium text-gray-900">{client.chest} cm</p>
+                        </div>
+                    )}
+                    {client.arm && (
+                        <div>
+                            <p className="text-sm text-gray-500 mb-1">{t('clients.edit.arm')}</p>
+                            <p className="font-medium text-gray-900">{client.arm} cm</p>
+                        </div>
+                    )}
+                    {client.leg && (
+                        <div>
+                            <p className="text-sm text-gray-500 mb-1">{t('clients.edit.leg')}</p>
+                            <p className="font-medium text-gray-900">{client.leg} cm</p>
+                        </div>
+                    )}
                 </div>
             </div>
 
             {/* Tabs Section */}
             <div className="bg-white rounded-xl shadow-sm overflow-hidden">
                 <div className="border-b border-gray-200">
-                    <nav className="flex -mb-px">
-                        <button className="px-6 py-4 border-b-2 border-blue-600 text-sm font-medium text-blue-600">
-                            {t('clients.profile.tabs.current_plan')}
-                        </button>
-                        <button className="px-6 py-4 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700">
-                            {t('clients.profile.tabs.history')}
-                        </button>
-                        <button className="px-6 py-4 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700">
-                            {t('clients.profile.tabs.metrics')}
-                        </button>
-                        <button className="px-6 py-4 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:text-gray-700">
-                            {t('clients.profile.tabs.photos')}
-                        </button>
+                    <nav className="flex -mb-px overflow-x-auto">
+                        {tabs.map((tab) => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id as TabType)}
+                                className={`
+                                    whitespace-nowrap px-6 py-4 border-b-2 text-sm font-medium transition-colors
+                                    ${activeTab === tab.id
+                                        ? 'border-blue-600 text-blue-600'
+                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    }
+                                `}
+                            >
+                                {tab.name}
+                            </button>
+                        ))}
                     </nav>
                 </div>
 
                 <div className="p-6">
-                    {client.activePlan ? (
-                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-6">
-                            <div className="flex justify-between items-start">
-                                <div>
-                                    <h3 className="text-xl font-bold text-gray-900 mb-2">{client.activePlan.name}</h3>
-                                    {client.activePlan.description && (
-                                        <p className="text-gray-600 mb-4">{client.activePlan.description}</p>
-                                    )}
-                                    <div className="flex gap-3">
-                                        <Link
-                                            href={`/training-plans/${client.activePlan.id}`}
-                                            className="px-4 py-2 bg-white text-blue-600 border border-blue-200 rounded-lg text-sm font-medium hover:bg-blue-50"
+                    {activeTab === 'current_plan' && (
+                        <>
+                            {client.activePlan ? (
+                                <div className="bg-blue-50 border border-blue-100 rounded-xl p-6">
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <h3 className="text-xl font-bold text-gray-900 mb-2">{client.activePlan.name}</h3>
+                                            {client.activePlan.description && (
+                                                <p className="text-gray-600 mb-4">{client.activePlan.description}</p>
+                                            )}
+                                            <div className="flex gap-3">
+                                                <Link
+                                                    href={`/training-plans/${client.activePlan.id}`}
+                                                    className="px-4 py-2 bg-white text-blue-600 border border-blue-200 rounded-lg text-sm font-medium hover:bg-blue-50"
+                                                >
+                                                    {t('clients.profile.view_details')}
+                                                </Link>
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={() => setSelectedModal('assign-plan')}
+                                            className="text-sm text-blue-600 hover:text-blue-800 font-medium"
                                         >
-                                            {t('clients.profile.view_details')}
-                                        </Link>
+                                            {t('clients.assign_plan.change_plan')}
+                                        </button>
                                     </div>
                                 </div>
-                                <button
-                                    onClick={() => setSelectedModal('assign-plan')}
-                                    className="text-sm text-blue-600 hover:text-blue-800 font-medium"
-                                >
-                                    {t('clients.assign_plan.change_plan')}
-                                </button>
-                            </div>
+                            ) : (
+                                <div className="text-center py-12">
+                                    <ClipboardDocumentListIcon className="h-16 w-16 text-gray-400 mx-auto mb-4" />
+                                    <h3 className="text-lg font-medium text-gray-900 mb-2">
+                                        {t('clients.assign_plan.no_plan_title')}
+                                    </h3>
+                                    <p className="text-gray-600 mb-4">
+                                        {t('clients.assign_plan.no_plan_desc')}
+                                    </p>
+                                    <button
+                                        onClick={() => setSelectedModal('assign-plan')}
+                                        className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
+                                    >
+                                        {t('clients.assign_plan.assign_plan')}
+                                    </button>
+                                </div>
+                            )}
+
+                            {/* Goal section */}
+                            {client.goal && (
+                                <div className="mt-6 bg-blue-50 border border-blue-100 rounded-lg p-4">
+                                    <h3 className="text-sm font-medium text-blue-800 uppercase tracking-wider mb-2">
+                                        {t('clients.profile.goal_title')}
+                                    </h3>
+                                    <p className="text-blue-900 font-medium">{client.goal}</p>
+                                </div>
+                            )}
+                        </>
+                    )}
+
+                    {activeTab === 'history' && (
+                        <div className="text-center py-12 text-gray-500">
+                            {/* Placeholder for history - can be extended later */}
+                            <CalendarIcon className="h-12 w-12 mx-auto mb-4 text-gray-400" />
+                            <p>{t('clients.profile.tabs.history')}...</p>
                         </div>
-                    ) : (
-                        <div className="text-center py-12">
-                            <ClipboardDocumentListIcon className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                            <h3 className="text-lg font-medium text-gray-900 mb-2">
-                                {t('clients.assign_plan.no_plan_title')}
-                            </h3>
-                            <p className="text-gray-600 mb-4">
-                                {t('clients.assign_plan.no_plan_desc')}
-                            </p>
-                            <button
-                                onClick={() => setSelectedModal('assign-plan')}
-                                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-                            >
-                                {t('clients.assign_plan.assign_plan')}
-                            </button>
-                        </div>
+                    )}
+
+                    {activeTab === 'metrics' && (
+                        <BodyMetricsTab clientId={clientId} />
+                    )}
+
+                    {activeTab === 'photos' && (
+                        <ProgressPhotosTab clientId={clientId} />
+                    )}
+
+                    {activeTab === 'coach_notes' && (
+                        <CoachNotesSection clientId={clientId} />
                     )}
                 </div>
             </div>

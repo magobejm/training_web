@@ -27,6 +27,8 @@ const schema = z.object({
     restingHeartRate: z.string().transform((val) => (val === '' ? undefined : Number(val))).optional(),
     leanMass: z.string().transform((val) => (val === '' ? undefined : Number(val))).optional(),
     avatarUrl: z.string().optional().nullable(),
+    phone: z.string().optional().nullable(),
+    goal: z.string().optional().nullable(),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -58,6 +60,8 @@ export default function EditProfileModal({ isOpen, onClose, client }: EditProfil
                 restingHeartRate: client.restingHeartRate?.toString() || '',
                 leanMass: client.leanMass?.toString() || '',
                 avatarUrl: client.avatarUrl || '',
+                phone: client.phone || '',
+                goal: client.goal || '',
             } as any);
         }
     }, [client, isOpen, reset]);
@@ -69,7 +73,6 @@ export default function EditProfileModal({ isOpen, onClose, client }: EditProfil
                 data: {
                     ...data,
                     gender: data.gender === '' ? null : (data.gender as any),
-                    // transforms handle numbers
                 } as any,
             });
             toast.success(t('clients.edit.success'));
@@ -161,6 +164,30 @@ export default function EditProfileModal({ isOpen, onClose, client }: EditProfil
                                                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
                                                     />
                                                     {errors.name && <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>}
+                                                </div>
+
+                                                <div>
+                                                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                                                        {t('clients.edit.phone')}
+                                                    </label>
+                                                    <input
+                                                        type="tel"
+                                                        {...register('phone')}
+                                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                                                        placeholder="+34 600 000 000"
+                                                    />
+                                                </div>
+
+                                                <div>
+                                                    <label htmlFor="goal" className="block text-sm font-medium text-gray-700">
+                                                        {t('clients.edit.goal')}
+                                                    </label>
+                                                    <input
+                                                        type="text"
+                                                        {...register('goal')}
+                                                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                                                        placeholder={t('clients.edit.goal')}
+                                                    />
                                                 </div>
 
                                                 <div className="grid grid-cols-2 gap-4">

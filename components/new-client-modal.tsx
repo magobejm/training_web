@@ -13,7 +13,9 @@ const createClientSchema = (t: (key: string) => string) => z.object({
     name: z.string().min(2, t('clients.form.name_min')),
     password: z.string().min(8, t('clients.form.password_min')),
     confirmPassword: z.string(),
-    avatarUrl: z.string().optional(),
+    avatarUrl: z.string().optional().nullable(),
+    phone: z.string().optional().nullable(),
+    goal: z.string().optional().nullable(),
 }).refine((data) => data.password === data.confirmPassword, {
     message: t('clients.form.password_mismatch'),
     path: ['confirmPassword'],
@@ -54,6 +56,8 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
                 name: data.name,
                 password: data.password,
                 avatarUrl: data.avatarUrl,
+                phone: data.phone,
+                goal: data.goal,
             });
             console.log('Cliente creado:', result);
             setSuccessMessage(t('clients.form.success_create'));
@@ -109,7 +113,9 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
                     {createClient.isError && (
                         <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
                             <p className="text-sm text-red-600">
-                                {t('clients.form.error_create')}
+                                {createClient.error?.response?.status === 409
+                                    ? t('clients.form.email_in_use')
+                                    : t('clients.form.error_create')}
                             </p>
                         </div>
                     )}
@@ -180,6 +186,43 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
                             />
                             {errors.email && (
                                 <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
+                            )}
+                        </div>
+
+                        {/* Phone Field */}
+                        <div>
+                            <label
+                                htmlFor="phone"
+                                className="block text-sm font-medium text-gray-700 mb-2"
+                            >
+                                {t('clients.edit.phone')}
+                            </label>
+                            <input
+                                {...register('phone')}
+                                type="tel"
+                                id="phone"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder="+34 600 000 000"
+                            />
+                            {errors.phone && (
+                                <p className="mt-1 text-sm text-red-600">{errors.phone.message}</p>
+                            )}
+                        </div>
+
+                        {/* Goal Field */}
+                        <div>
+                            <label htmlFor="goal" className="block text-sm font-medium text-gray-700 mb-2">
+                                {t('clients.edit.goal')}
+                            </label>
+                            <input
+                                type="text"
+                                {...register('goal')}
+                                id="goal"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder={t('clients.edit.goal')}
+                            />
+                            {errors.goal && (
+                                <p className="mt-1 text-sm text-red-600">{errors.goal.message}</p>
                             )}
                         </div>
 

@@ -43,7 +43,7 @@ export function useCreateClient() {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: async (data: { email: string; name: string; password: string; avatarUrl?: string | null }) => {
+        mutationFn: async (data: { email: string; name: string; password: string; avatarUrl?: string | null; phone?: string | null; goal?: string | null }) => {
             const response = await api.post('/auth/register', {
                 ...data,
                 role: 'CLIENT',
