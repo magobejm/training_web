@@ -62,14 +62,14 @@
         "agenda": "Agenda",
         "instructions": "Instructions",
         "inbox": "Inbox",
-        "payments": "Payment Methods",
+        "payments": "Billing",
         "settings": "Settings",
         "logout": "Logout",
         "profile": "Profile",
         "role": {
+            "admin": "Administrator",
             "trainer": "Trainer",
-            "client": "Client",
-            "admin": "Admin"
+            "client": "Client"
         }
     },
     "dashboard": {
@@ -144,6 +144,10 @@
             "password_mismatch": "Passwords do not match",
             "password_min": "Password must be at least 8 characters",
             "name_min": "Name must be at least 2 characters",
+            "birth_date": "Birth Date",
+            "height": "Height (cm)",
+            "weight": "Weight (kg)",
+            "required": "This field is required",
             "info_credentials": "The client will receive an email with their access credentials.",
             "email_in_use": "This email is already in use",
             "success_create": "Client created successfully",

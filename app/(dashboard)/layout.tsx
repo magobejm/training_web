@@ -35,6 +35,16 @@ export default function DashboardLayout({
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const { t } = useTranslation();
 
+    const getRoleName = (role: any): string => {
+        if (!role) return '';
+        if (typeof role === 'string') return role;
+        return role.name || '';
+    };
+
+    const roleName = getRoleName(user?.role);
+    const isTrainer = roleName === 'TRAINER';
+    const isAdmin = roleName === 'ADMIN';
+
     const navigation = [
         { name: t('sidebar.dashboard'), href: '/dashboard', icon: HomeIcon },
         { name: t('sidebar.clients'), href: '/clients', icon: UsersIcon },
@@ -137,9 +147,9 @@ export default function DashboardLayout({
                                         {user?.name || user?.email}
                                     </p>
                                     <p className="text-xs text-gray-400">
-                                        {user?.role?.name === 'ADMIN'
+                                        {isAdmin
                                             ? t('sidebar.role.admin')
-                                            : user?.role?.name === 'TRAINER'
+                                            : isTrainer
                                                 ? t('sidebar.role.trainer')
                                                 : t('sidebar.role.client')}
                                     </p>

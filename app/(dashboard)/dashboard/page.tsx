@@ -41,7 +41,13 @@ export default function DashboardPage() {
         );
     }
 
-    const isTrainer = dashboard.role.name === 'TRAINER';
+    const getRoleName = (role: any): string => {
+        if (!role) return '';
+        if (typeof role === 'string') return role;
+        return role.name || '';
+    };
+
+    const isTrainer = getRoleName(dashboard.role) === 'TRAINER';
     const stats = dashboard.data;
 
     return (

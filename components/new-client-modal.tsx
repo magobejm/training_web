@@ -14,14 +14,28 @@ const createClientSchema = (t: (key: string) => string) => z.object({
     password: z.string().min(8, t('clients.form.password_min')),
     confirmPassword: z.string(),
     avatarUrl: z.string().optional().nullable(),
-    phone: z.string().optional().nullable(),
-    goal: z.string().optional().nullable(),
+    phone: z.string().min(1, t('clients.form.required')),
+    goal: z.string().min(1, t('clients.form.required')),
+    birthDate: z.string().min(1, t('clients.form.required')),
+    height: z.number().min(50, t('clients.form.required')),
+    weight: z.number().min(20, t('clients.form.required')),
 }).refine((data) => data.password === data.confirmPassword, {
     message: t('clients.form.password_mismatch'),
     path: ['confirmPassword'],
 });
 
-type ClientForm = z.infer<ReturnType<typeof createClientSchema>>;
+type ClientForm = {
+    email: string;
+    name: string;
+    password: string;
+    confirmPassword: string;
+    avatarUrl?: string | null;
+    phone: string;
+    goal: string;
+    birthDate: string;
+    height: number;
+    weight: number;
+};
 
 interface NewClientModalProps {
     isOpen: boolean;
@@ -43,23 +57,34 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
         setValue,
         watch,
     } = useForm<ClientForm>({
-        resolver: zodResolver(clientSchema),
+        resolver: zodResolver(clientSchema as any),
         defaultValues: {
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            phone: '',
+            goal: '',
             avatarUrl: '/avatars/avatar-01.png',
+            birthDate: '',
+            height: 0,
+            weight: 0,
         },
     });
 
     const onSubmit = async (data: ClientForm) => {
         try {
-            const result = await createClient.mutateAsync({
+            await createClient.mutateAsync({
                 email: data.email,
                 name: data.name,
                 password: data.password,
                 avatarUrl: data.avatarUrl,
                 phone: data.phone,
                 goal: data.goal,
-            });
-            console.log('Cliente creado:', result);
+                birthDate: data.birthDate,
+                height: data.height,
+                weight: data.weight,
+            } as any);
             setSuccessMessage(t('clients.form.success_create'));
             reset();
             setTimeout(() => {
@@ -68,7 +93,6 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
             }, 1500);
         } catch (error: any) {
             console.error('Error creating client:', error);
-            console.error('Error response:', error.response?.data);
         }
     };
 
@@ -121,7 +145,11 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
                     )}
 
                     {/* Form */}
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        className="space-y-4"
+                        autoComplete="off"
+                    >
                         {/* Avatar Selection */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -162,6 +190,7 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
                                 {...register('name')}
                                 type="text"
                                 id="name"
+                                autoComplete="off"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder={t('clients.form.name_placeholder')}
                             />
@@ -181,6 +210,7 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
                                 {...register('email')}
                                 type="email"
                                 id="email"
+                                autoComplete="new-email"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder={t('clients.form.email_placeholder')}
                             />
@@ -226,6 +256,58 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
                             )}
                         </div>
 
+                        {/* Birth Date Field */}
+                        <div>
+                            <label htmlFor="birthDate" className="block text-sm font-medium text-gray-700 mb-2">
+                                {t('clients.form.birth_date')}
+                            </label>
+                            <input
+                                type="date"
+                                {...register('birthDate')}
+                                id="birthDate"
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            />
+                            {errors.birthDate && (
+                                <p className="mt-1 text-sm text-red-600">{errors.birthDate.message}</p>
+                            )}
+                        </div>
+
+                        {/* Height & Weight Grid */}
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label htmlFor="height" className="block text-sm font-medium text-gray-700 mb-2">
+                                    {t('clients.form.height')}
+                                </label>
+                                <input
+                                    type="number"
+                                    step="0.01"
+                                    {...register('height', { valueAsNumber: true })}
+                                    id="height"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    placeholder="180"
+                                />
+                                {errors.height && (
+                                    <p className="mt-1 text-sm text-red-600">{errors.height.message}</p>
+                                )}
+                            </div>
+                            <div>
+                                <label htmlFor="weight" className="block text-sm font-medium text-gray-700 mb-2">
+                                    {t('clients.form.weight')}
+                                </label>
+                                <input
+                                    type="number"
+                                    step="0.1"
+                                    {...register('weight', { valueAsNumber: true })}
+                                    id="weight"
+                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    placeholder="75.5"
+                                />
+                                {errors.weight && (
+                                    <p className="mt-1 text-sm text-red-600">{errors.weight.message}</p>
+                                )}
+                            </div>
+                        </div>
+
                         {/* Password Field */}
                         <div>
                             <label
@@ -238,6 +320,7 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
                                 {...register('password')}
                                 type="password"
                                 id="password"
+                                autoComplete="new-password"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder={t('clients.form.password_placeholder')}
                             />
@@ -258,6 +341,7 @@ export default function NewClientModal({ isOpen, onClose }: NewClientModalProps)
                                 {...register('confirmPassword')}
                                 type="password"
                                 id="confirmPassword"
+                                autoComplete="new-password"
                                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                 placeholder={t('clients.form.confirm_password_placeholder')}
                             />
